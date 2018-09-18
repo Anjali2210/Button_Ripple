@@ -1,0 +1,113 @@
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<style>
+	.pulsate{
+		border-radius: 100%;
+		border: 1px solid #006064;
+		position: absolute;
+		width: 70px;
+		height: 70px;
+		opacity: 1;
+		left: 100px;
+		top: 50px;
+		cursor: pointer;
+		-webkit-transition: opacity 1.3s .5s;
+		z-index: 99999999;
+	}
+	.pulsate-inner{
+		display: block;
+		position: absolute;
+		border-radius: 100%;
+		width: 55px;
+		height: 55px;
+		z-index: 999999999;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4dd0e1+0,00bcd4+0,00bcd4+38,00bcd4+51,00838f+100,006064+100 */
+		background: rgb(77,208,225); /* Old browsers */
+		background: -moz-radial-gradient(center, ellipse cover, rgba(77,208,225,1) 0%, rgba(0,188,212,1) 0%, rgba(0,188,212,1) 38%, rgba(0,188,212,1) 51%, rgba(0,131,143,1) 100%, rgba(0,96,100,1) 100%); /* FF3.6-15 */
+		background: -webkit-radial-gradient(center, ellipse cover, rgba(77,208,225,1) 0%,rgba(0,188,212,1) 0%,rgba(0,188,212,1) 38%,rgba(0,188,212,1) 51%,rgba(0,131,143,1) 100%,rgba(0,96,100,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: radial-gradient(ellipse at center, rgba(77,208,225,1) 0%,rgba(0,188,212,1) 0%,rgba(0,188,212,1) 38%,rgba(0,188,212,1) 51%,rgba(0,131,143,1) 100%,rgba(0,96,100,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dd0e1', endColorstr='#006064',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+		left: 7px;
+		top: 7px;
+		border: 1px solid #00ACC1;
+	}
+	.pulsate.animate:before {
+		content: "";
+		top: -35px;
+		left: -35px;
+		position: absolute;
+		background-color: #0097A7;
+		width: 140px;
+		height: 140px;
+		border-radius: 100%;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+		position: absolute;
+		-webkit-animation: jumper 1.8s 0.33333s ease-out infinite;
+		opacity: 0;
+	}
+	.pulsate.animate:after {
+		content: "";
+		background-color: #0097A7;
+		width: 140px;
+		height: 140px;
+		border-radius: 100%;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+		position: absolute;
+		opacity: 0;
+		left: -35px;
+		-webkit-animation: jumper 1.8s 0.66666s ease-out infinite;
+		top: -35px;
+	}
+	
+	/* Play */
+	.pulsate .pulsate-inner:before{
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		margin: auto;
+		border: 0;
+		background: transparent;
+		box-sizing: border-box;
+		width: 0;
+		height: 14px;
+		border-color: transparent transparent transparent #202020;
+		transition: 100ms all ease;
+		cursor: pointer;
+		border-style: solid;
+		border-width: 9px 0 9px 16px;
+		
+	}
+	
+	/* Pause */
+	.pulsate.animate .pulsate-inner:before{
+		box-sizing: border-box;
+		width: 0;
+		height: 18px;
+		border-color: transparent transparent transparent #202020;
+		transition: 100ms all ease;
+		cursor: pointer;
+		border-style: double;
+		border-width: 0px 0 0px 16px;
+	}
+	@-webkit-keyframes jumper{
+		0%{opacity:0;-webkit-transform:scale(0);transform:scale(0)}
+		5%{opacity:1}
+		100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}
+	}
+</style>
+
+<span class="pulsate"><span class="pulsate-inner"></span></span>
+
+<script>
+	$(".pulsate").click(function(){
+		$(this).toggleClass("animate");
+	});
+</script>
